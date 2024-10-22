@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=2">
+            <title>MAY TINH CO BAN</title>
+           
+            <style>
+                body{
+                    background-image: url(nebula-galaxy.gif);
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                    text-align: center;
+                    background-position: center;
+                    background-attachment: fixed;
+                }
+                .mayTinh{
+                    background-image: url(360_F_719934580_4yXYYptTHrOEVNhBqIdgukKJJjrLRRmu.jpg);
+                    background-color: rgb(5, 92, 255);
+                    display: inline-block;
+                    padding: 30px;
+                    width: 300px;
+                    height: 300px;
+                    font-size: large;
+                    text-align: center;
+                    margin-top: 50px;/* khoảng cách so với màn hình*/
+                    box-shadow: 10px 5px 10px rgb(176, 121, 214);
+                    border-radius: 20px;
+                }
+
+                input{
+                    width: 300px ;
+                    height: 50px;
+                }
+
+                button{
+                    text-align: center;
+                    font-size: large;
+                    padding: 7%;
+                    height: 30px;
+                    width: 50px;
+                    width: 50px;
+                    margin: 2px;
+                    border-radius: 20%;
+                }
+
+            </style>
+    </head>
+    <body>
+
+        <div class='mayTinh'>
+            <!--Phần màn hình của máy tính-->
+            <input type="text" id="ketQuaTrenMh" disabled>
+            <br>
+            <button onclick="tinhToan()">=</button>
+            <button onclick="themVaoInput('0')">0</button>
+            <button onclick="clearMh()">AC  </button>
+            <button onclick="hoanDoiVitri('/')">/</button>
+            <br>
+            <button onclick="themVaoInput('1')">1</button>
+            <button onclick="themVaoInput('2')">2</button>
+            <button onclick="themVaoInput('3')">3</button>
+            <button onclick="hoanDoiVitri('-')">-</button>
+            <br>
+            <button onclick="themVaoInput('4')">4</button>
+            <button onclick="themVaoInput('5')">5</button>
+            <button onclick="themVaoInput('6')">6</button>
+            <button onclick="hoanDoiVitri('+')">+</button>
+            <br>
+            <button onclick="themVaoInput('7')">7</button>
+            <button onclick="themVaoInput('8')">8</button>
+            <button onclick="themVaoInput('9')">9</button>
+            <button onclick="hoanDoiVitri('X')">X</button>
+        </div>
+
+        <!--Thêm các số vào tiếp theo chữ số đầu tiên,
+ vidu như nhập 1 sau đó nhập 2 sẽ đc 12-->
+        <script>
+            var soHienTai = '';// số hiện tại đang nhấn vào
+            var phepTinh = '';
+            var soGanVao = '';
+     
+    function themVaoInput(number){
+        soHienTai = soHienTai + number; // nhâp số trước
+            document.getElementById('ketQuaTrenMh').value = soHienTai;// số trước được gán vào ketQuaTrenMh
+
+        }
+        
+        //Bấm phép tính sau đó số sau sễ được gán cho số trước
+        //và 
+        function hoanDoiVitri(nhapPhepTinh){
+            phepTinh = nhapPhepTinh; // phép tính trên được đưa vào nó được gán cho biến phép tính
+            soGanVao = soHienTai; soHienTai = '';
+            document.getElementById('ketQuaTrenMh').value = ''; // bấm phép tính thì màn hình sẽ bạn mất số
+        }
+
+        function tinhToan(){
+            var ketQuaDaTinh;
+            //parseFloat() dung de chuyen chuoi thanh so
+            if(phepTinh === '+' ){
+                ketQuaDaTinh = parseFloat(soGanVao) + parseFloat(soHienTai);
+            }else if(phepTinh === '-' ){
+                ketQuaDaTinh = parseFloat(soGanVao) - parseFloat(soHienTai);
+            }else if(phepTinh === '/' ){
+                ketQuaDaTinh = parseFloat(soGanVao) / parseFloat(soHienTai);
+            }else if(phepTinh === 'X' ){
+                ketQuaDaTinh = parseFloat(soGanVao) *parseFloat(soHienTai);
+            }
+
+            document.getElementById("ketQuaTrenMh").value = ketQuaDaTinh ;
+            soHienTai = ketQuaDaTinh.toString(); // chuyen so thanh chuoi de su dung cho phep tinh tiep theo
+            phepTinh = '';
+            soGanVao = '';
+
+
+        }
+
+        function clearMh(){
+            soGanVao = '';
+            soHienTai = '';
+            phepTinh = '';
+            document.getElementById("ketQuaTrenMh").value = '';
+        }
+
+
+
+
+    </script>
+
+    </body>
+</html>
